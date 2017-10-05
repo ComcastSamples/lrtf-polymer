@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>Web Components Demo</title>
+
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,latin-ext);
+      body {
+        font-family: Roboto, "Helvetica Neue", Arial, Helvetica, sans-serif;
+      }
+    </style>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <lrtf-speaker>
+    </lrtf-speaker>
+
+    <template id="lrtf-speaker">
+      <style>
+        :host {
+          display: block;
+          text-align: center;
+          -webkit-font-smoothing: antialiased;
+          contain: content; /* see https://developers.google.com/web/updates/2016/06/css-containment */
+          /* all: initial; */
+          /* Note regading `all: initial`: not going to use it here, but good to know about
+             the ability to set it to prevent inheritable styles (background, color, font,
+             line-height, etc.) from being inherited in the Shadow DOM. */
+        }
+        a {
+          text-decoration: none;
+          color: #63a145;
+        }
+        .photo-wrapper {
+          border-radius: 50%;
+          overflow: hidden;
+          margin: 0 auto 20px;
+          display: inline-block;
+          max-width: 100%;
+        }
+        ::slotted(img) {
+          display: block;
+          max-width: 100%;
+          width: 200px;
+          height: auto;
+        }
+        ::slotted(h3) {
+          font-size: 13px;
+          font-weight: 700;
+          text-transform: uppercase;
+          line-height: 14px;
+          letter-spacing: 0.3em;
+          margin: 0 0 10px;
+          padding: 0;
+        }
+        a:hover ::slotted(h3) {
+          text-decoration: underline;
+        }
+        ::slotted(p) {
+          color: #8d93a0;
+          margin: 0 0 10px;
+          padding: 0;
+          line-height: 29px;
+          font-size: 14px;
+        }
+        .speaker-socials {
+          margin: 0;
+          padding: 0;
+          list-style-type: none;
+        }
+        .speaker-socials > li {
+          padding: 0 10px;
+          margin: 0;
+          display: inline-block;
+          text-align: center;
+        }
+        .fa {
+          box-sizing: border-box;
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+          line-height: 27px;
+          border-radius: 50%;
+          border: 2px solid#e9e9e9;
+          transition: color 0.2s ease, background 0.2s ease, border 0.2s ease;
+          font-family: FontAwesome;
+          font-size: inherit;
+          text-rendering: auto;
+          transform: translate(0, 0);
+        }
+        a:hover .fa {
+          color: #fff;
+          background-color: #63a145;
+          border-color: #63a145;
+        }
+        .speaker-socials span {
+          /* visually hidden, but read by screen readers */
+          position: absolute;
+          height: 1px;
+          width: 1px;
+          overflow: hidden;
+          clip: rect(1px, 1px, 1px, 1px);
+          clip-path: polygon(1px 1px, 1px 1px, 1px 1px, 1px 1px);
+        }
+        .twitter:before {
+          content: "\f099";
+        }
+        .website:before {
+          content: "\f0ac";
+        }
+      </style>
+    </template>
+
+    <script>
+      class LrtfSpeaker extends HTMLElement {
+        constructor() {
+          super(); // always call super() first in the constructor
+        }
+      }
+
+      window.customElements.define('lrtf-speaker', LrtfSpeaker);
+    </script>
+  </body>
+</html>
